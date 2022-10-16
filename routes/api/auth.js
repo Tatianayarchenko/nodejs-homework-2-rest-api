@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { validateBody } = require('../../middlewares');
+const { validateBody, authenticate } = require('../../middlewares');
 
 const { ctrlWrapper } = require('../../helpers');
 
@@ -23,5 +23,11 @@ router.post(
   validateBody(schemas.loginSchema),
   ctrlWrapper(ctrl.login)
 );
+
+// current
+router.get('/current', authenticate, ctrlWrapper(ctrl.getCurrent));
+
+// logout
+router.get('/logout', authenticate, ctrlWrapper(ctrl.logout));
 
 module.exports = router;

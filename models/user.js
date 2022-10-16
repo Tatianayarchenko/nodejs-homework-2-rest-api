@@ -23,10 +23,10 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Password is required'],
     },
-    // token: {
-    //   type: String,
-    //   default: null,
-    // },
+    token: {
+      type: String,
+      default: null,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -42,7 +42,6 @@ const registerSchema = Joi.object({
 const loginSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
-  // subscription: Joi.string().valid(...userSubscription),
 });
 
 const schemas = {
